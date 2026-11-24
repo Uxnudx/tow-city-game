@@ -26,7 +26,7 @@ const TowAudio=(()=>{
       effects=ctx.createGain();effects.gain.value=.40;effects.connect(master);
       ambience=ctx.createGain();ambience.gain.value=.38;ambience.connect(master);
       musicBus=ctx.createGain();musicBus.gain.value=musicVolume;
-      musicMix=ctx.createGain();musicMix.gain.value=.66;musicMix.connect(musicBus).connect(master);
+      musicMix=ctx.createGain();musicMix.gain.value=.46;musicMix.connect(musicBus).connect(master);
       engine=ctx.createOscillator();engine.type="triangle";engine.frequency.value=47;
       engineGain=ctx.createGain();engineGain.gain.value=0;
       engine.connect(engineGain).connect(ambience);engine.start();
@@ -46,24 +46,23 @@ const TowAudio=(()=>{
   }
   function note(midi,at,length,gainLevel,voice){
     const pitch=440*Math.pow(2,(midi-69)/12),osc=ctx.createOscillator(),env=ctx.createGain();
-    osc.type=voice==="melody"?"triangle":"sine";
+    osc.type=voice==="pluck"?"triangle":"sine";
     osc.frequency.value=pitch;
     env.gain.setValueAtTime(.0001,at);
-    env.gain.exponentialRampToValueAtTime(gainLevel,at+(voice==="melody"?.047:.017));
+    env.gain.exponentialRampToValueAtTime(gainLevel,at+(voice==="melody"?.085:.045));
     env.gain.exponentialRampToValueAtTime(Math.max(.0002,gainLevel*.31),at+length*.5);
     env.gain.exponentialRampToValueAtTime(.0001,at+length);
     osc.connect(env).connect(musicMix);osc.start(at);osc.stop(at+length+.02);
   }
   function schedule(){
     if(ctx?.state==="running"&&!document.hidden&&musicVolume>0&&!muted){
-      const step=.257;
+      const step=.33;
       if(nextBeat<ctx.currentTime)nextBeat=ctx.currentTime+.07;
       while(nextBeat<ctx.currentTime+.18){
         const bar=Math.floor(beat/6)%chords.length, part=beat%6, chord=chords[bar];
-        if(part===0||part===3)note(chord[part===0?0:1]-12,nextBeat,.75,.115,"bass");
-        note(chord[[0,1,2,1,3,2][part]]+12,nextBeat,.50,.048,"pluck");
-        if(melody[bar][part]!==null)note(melody[bar][part],nextBeat,part===0?.78:.44,.105,"melody");
-        if(mood==="sea"&&(part===2||part===5))note(chord[2],nextBeat,.37,.043,"pluck");
+        if(part===0)note(chord[0]-12,nextBeat,1.45,.09,"bass");
+        if(part%2===0)note(chord[part/2+1],nextBeat,.73,.038,"pluck");
+        if(melody[bar][part]!==null&&part!==5)note(melody[bar][part],nextBeat,.78,.076,"melody");
         beat++;nextBeat+=step;
       }
     }
@@ -72,7 +71,7 @@ const TowAudio=(()=>{
   function music(nextMood){
     if(mood===nextMood)return;
     mood=nextMood;
-    if(musicMix)musicMix.gain.setTargetAtTime({title:.78,town:.60,sea:.77,dialogue:.26,pause:.36}[mood],ctx.currentTime,.25);
+    if(musicMix)musicMix.gain.setTargetAtTime({title:.56,town:.46,sea:.50,dialogue:.18,pause:.24}[mood],ctx.currentTime,.25);
   }
   function tone(freq,target,delay,length,type,volume){
     const at=ctx.currentTime+delay,osc=ctx.createOscillator(),gain=ctx.createGain();

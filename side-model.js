@@ -361,11 +361,14 @@ const Harbor=(()=>{
       }
     }else {state.tension=0;state.strain=0;}
     const gate=bridge(state);
+    function crossesClosedGate(from,to){
+      return gate&&!gate.open&&(from<gate.x)!==(to<gate.x);
+    }
     function travel(body,limit,isCargo){
       const old=body.x,next=old+body.v*step;
       body.x=clamp(next,60,limit);
       if(body.x!==next)body.v*=-.22;
-      if(gate&&!gate.open&&(old<gate.x)!==(body.x<gate.x)){
+      if(crossesClosedGate(old,body.x)){
         const fast=Math.abs(body.v)>40;
         body.x=gate.x+(old<gate.x ? -.8 : .8);body.v*=-.26;
         if(fast&&state.time-state.hitAt>.35){
@@ -402,8 +405,9 @@ const Harbor=(()=>{
       travel(cargo,m.to+254,true);
       const gap=boat.x-cargo.x,side=Math.sign(gap)||1;
       const impact=(cargo.v-boat.v)*side;
-      if(!state.passing&&Math.abs(gap)<59&&impact>20){
-        boat.x=clamp(cargo.x+side*59,60,m.to+280);
+      if(!state.passing&&Math.abs(gap)<59&&impact>20&&!crossesClosedGate(boat.x,cargo.x)){
+        const separated=clamp(cargo.x+side*59,60,m.to+280);
+        boat.x=crossesClosedGate(boat.x,separated)?gate.x+(boat.x<gate.x?-.8:.8):separated;
         boat.v=cargo.v;cargo.v-=side*impact*.16;
         if(impact>s.armor&&state.time-state.hitAt>.35){
           state.hitAt=state.time;state.damage++;state.events.push("bump");

@@ -557,6 +557,10 @@ function result(stars,coins,opened,bonus){
   else if(!state.response){
     const [,,name,line]=Harbor.story[state.index];
     npc(name==="Лина" ? "mechanic" : "master",name,line);
+    if(state.index===0&&save.incidents===0){
+      const rescue=Harbor.calls(0).find(call=>call.operation==="rescue");
+      if(rescue)addRow(rescue.name,rescue.other,"Выйти на помощь",()=>enter(null,rescue));
+    }
     if(state.index===0&&save.duties[0]===0)paragraph("Открыта смена «Старая набережная». На доске контрактов перейдите в раздел «Районы».");
     if(opened.length)paragraph("Доступны контракты: "+opened.join(", ")+".");
     if(save.results.every(Boolean)&&!save.story.ending)paragraph("Последний рейс выполнен. Поговорите с Марином на берегу, чтобы закрыть историю.");
