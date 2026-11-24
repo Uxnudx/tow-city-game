@@ -1,0 +1,79 @@
+*{box-sizing:border-box} :root{color-scheme:dark;--night:#18243b;--panel:#22334e;--cream:#fff0d5;--fog:#c1cbe0;--border:#50647d;--gold:#ffcf79}body{margin:0;background:var(--night);color:var(--cream);font:16px/1.45 Georgia,serif}header,main{max-width:1370px;margin:auto;padding-inline:24px}header{height:58px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}header strong{font-size:17px}nav,.stats,footer{display:flex;align-items:center;gap:16px}a{color:var(--gold);text-underline-offset:4px}button{color:var(--cream);background:#273b59;border:1px solid #6f8098;border-radius:5px;font:inherit;padding:6px 11px;cursor:pointer}button:hover:not(:disabled){border-color:var(--gold)}button:disabled{opacity:.55;cursor:default}button:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}.primary{background:var(--gold);color:#202b3d;border-color:var(--gold);font-weight:bold}.mast{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:16px 0 12px}.tag{font-size:11px;color:var(--gold);letter-spacing:.13em;font-weight:bold}h1,h2,p{margin:0}h1{font-size:clamp(25px,4vw,40px);line-height:1.12}.stats{gap:22px}.stats div{display:grid}.stats span{font-size:12px;color:var(--fog)}.stats strong{font-variant-numeric:tabular-nums;white-space:nowrap}.stage{border:1px solid var(--border);border-radius:7px;background:var(--panel);overflow:hidden}.frame{aspect-ratio:16/9;position:relative;background:#406f87;isolation:isolate}.frame canvas{display:block;width:100%;height:100%;image-rendering:pixelated}.top-hud{position:absolute;top:8px;left:8px;right:8px;display:flex;justify-content:space-between;pointer-events:none;gap:5px}.top-hud span,.hint,.tension{background:#172338;border:1px solid #78849a;padding:4px 7px;border-radius:4px;font-size:13px}.hint{position:absolute;bottom:9%;left:50%;transform:translateX(-50%);white-space:nowrap;color:var(--gold)}.tension{position:absolute;bottom:8px;right:8px;display:flex;align-items:center;gap:6px}.tension meter{width:70px;height:13px}.objective{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:68px;padding:8px 12px}.objective strong{color:var(--gold)}.objective p{color:var(--fog);font-size:14px}.dialog{position:absolute;inset:0;display:grid;place-items:center;background:#142035ad;padding:10px;overflow:auto}.dialog section{background:#192942;border:1px solid #8190a6;border-radius:7px;padding:14px;max-width:580px;width:100%;max-height:100%;overflow:auto}.dialog h2{margin:3px 0 8px;font-size:23px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--border);padding:7px 0}.row strong{font-size:15px}.row p,#panel-body>p{font-size:13px;color:var(--fog)}.row button{white-space:nowrap;font-size:14px}.dialog #panel-close{margin-top:8px;font-size:14px}.touch{display:none}footer{padding:10px 0;flex-wrap:wrap;color:var(--fog);font-size:13px}kbd{padding:2px 5px;border:1px solid var(--border);border-radius:3px;color:var(--cream)}[hidden]{display:none!important}@media(pointer:coarse),(max-width:760px){header,main{padding-inline:8px}header{height:48px}header strong,nav a,nav button{font-size:13px}nav{gap:8px}.stats{gap:6px}.stats span{font-size:10px}.stats strong{font-size:13px}.mast{align-items:center}.touch{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:7px;border-top:1px solid var(--border)}.touch button{min-height:44px;touch-action:none;font-size:12px;padding:4px}.top-hud span,.hint,.tension{font-size:10px}.hint{bottom:13%}.objective p{font-size:12px}.objective button{font-size:12px}.dialog{position:fixed;inset:0;z-index:4}.dialog section{max-height:90vh}.dialog h2{font-size:19px}footer{display:none}}
+.yard-tabs{display:flex;gap:6px;margin:0 0 8px}.yard-tabs button[aria-pressed=true]{border-color:var(--gold);color:var(--gold)}.yard-tabs+p{margin-bottom:6px}
+:root{--night:#17212a;--panel:#202b33;--border:#4a5a62;--cream:#fff0d5;--fog:#cad3d6}
+button{background:#29363f;border-color:#677982;border-radius:4px}
+button:hover:not(:disabled){background:#394851}
+button.primary:hover:not(:disabled){background:#ffe0a2}
+.dialog section{background:#202b33;border-color:#677982;border-radius:4px}
+.dialog section:has(.fleet-layout){max-width:684px}
+.dialog section .fleet-detail{background:#19232a;border:0;padding:12px;overflow:visible}
+.fleet-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start;gap:12px}
+.fleet-list{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.fleet-list button{display:flex;min-height:58px;text-align:left;align-items:center;gap:4px;padding:4px;background:#26323a}
+.fleet-list button[aria-pressed=true]{border-color:var(--gold);background:#303938}
+.fleet-list strong,.fleet-list small{display:block}
+.fleet-list strong{font-size:13px}
+.fleet-list small,.fleet-detail p{color:var(--fog);font-size:13px}
+.fleet-list small{font-size:11px;white-space:nowrap}
+.ship-portrait{display:block;image-rendering:pixelated}
+.fleet-list canvas{width:48px;height:27px;flex:none}
+.fleet-detail canvas{width:146px;height:84px;background:#22323c}
+.fleet-detail h3{font-size:17px;line-height:1.2;margin:8px 0}
+.fleet-detail dl{display:flex;gap:16px;margin:8px 0}
+.fleet-detail dt{color:var(--fog);font-size:12px}
+.fleet-detail dd{margin:0;font-variant-numeric:tabular-nums;font-weight:bold}
+@media(max-width:620px){.fleet-layout{grid-template-columns:1fr;gap:8px}.fleet-list{grid-template-columns:repeat(4,minmax(0,1fr))}.fleet-list button{display:grid;justify-items:center;justify-content:center;text-align:center;gap:0;min-height:64px}.fleet-detail canvas{float:right;width:92px;height:53px;margin:0 0 4px 8px}.fleet-detail dl{gap:12px}.fleet-detail h3{margin:0 0 4px}.dialog section .fleet-detail{padding:8px}}
+@font-face{font-family:Alegreya;src:url(alegreya.woff2) format("woff2");font-weight:400 900;font-display:swap}
+body{font-family:Alegreya,Georgia,serif;font-weight:500}
+.npc{display:flex;gap:12px;align-items:center;margin:0 0 8px;padding:8px;background:#19232a;border:1px solid #4a5a62;border-radius:4px}
+.npc .npc-portrait{flex:none;width:40px;height:50px;image-rendering:pixelated}
+.npc strong{font-size:15px}.npc p{font-size:13px;color:var(--fog)}
+.home-menu{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.home-menu button{min-height:44px}
+.settings-list{margin:4px 0 8px}
+.settings-list label{display:flex;min-height:48px;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid var(--border)}
+.settings-list input{accent-color:var(--gold)}
+.settings-list select{font:inherit;color:var(--cream);background:#29363f;border:1px solid #677982;border-radius:4px;padding:4px}
+@media(max-width:550px){.home-menu{grid-template-columns:1fr}.npc{padding:4px 8px}}
+.frame canvas,.npc .npc-portrait,.ship-portrait{image-rendering:auto}.fleet-detail canvas{height:auto}
+.chapter{font-size:16px;color:var(--gold);margin:16px 0 4px}.dialog #panel-body>.npc{margin-top:8px}
+:root{--night:#17212a;--panel:#202b33;--border:#4a5a62;--gold:#ffcf79}
+.objective{border-top:1px solid var(--border);padding:12px 16px}
+.objective strong{font-size:17px}
+.objective p{font-size:15px}
+.dialog[data-screen=home]>section,.dialog[data-screen=settings]>section{max-width:460px;padding:16px}
+.dialog[data-screen=home]>section:before{content:"";display:block;height:104px;margin:-16px -16px 12px;background:#2b3a42 url(workshop.webp) center 41%/cover;border-bottom:1px solid var(--border)}
+.home-menu{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0 0}
+.home-menu .primary{grid-column:1/-1}
+.dialog[data-screen=yard]>section{max-width:800px;padding:16px}
+.dialog[data-screen=yard] .fleet-layout{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px}
+.dialog[data-screen=yard] .fleet-detail{grid-column:1;grid-row:1;padding:0 0 12px;background:#17242c}
+.dialog[data-screen=yard] .fleet-list{grid-column:2;grid-row:1;grid-template-columns:1fr}
+.dialog[data-screen=yard] .fleet-list button{min-height:44px;justify-items:start;justify-content:start;padding:4px 8px;border-inline-color:transparent;background:#24313a}
+.dialog[data-screen=yard] .fleet-list button[aria-pressed=true]{border-left-color:var(--gold);background:#303d40}
+.dialog[data-screen=yard] .fleet-list button canvas{width:56px;height:auto}
+.dialog[data-screen=yard] .fleet-list button span{display:flex;align-items:center;gap:8px}
+.dialog[data-screen=yard] .fleet-list button small{font-size:12px}
+.ship-display{position:relative;display:grid;place-items:end center;aspect-ratio:2.6;background:#263941 url(workshop.webp) center 59%/cover;border-bottom:1px solid var(--border)}
+.dialog[data-screen=yard] .ship-display canvas{float:none;width:58%;height:auto;margin:0 0 4px;background:transparent;max-width:230px}
+.ship-display span{position:absolute;left:8px;top:8px;background:#17242c;color:var(--cream);font-size:13px;padding:4px 8px}
+.dialog[data-screen=yard] .fleet-detail h3,.dialog[data-screen=yard] .fleet-detail p,.dialog[data-screen=yard] .fleet-detail dl,.dialog[data-screen=yard] .fleet-detail button{margin-inline:12px}
+@media(max-width:650px){
+ .frame{aspect-ratio:4/3}
+ .objective{padding:8px 12px}.objective strong{font-size:15px}.objective p{font-size:13px}
+ .touch{grid-template-columns:44px 1fr 44px 1fr minmax(78px,1.3fr);gap:4px}.touch button{min-height:48px;font-size:12px}
+ .touch #touch-action{color:var(--gold);border-color:#b59965}
+ .dialog{padding:8px;align-items:end}.dialog[data-screen]>section{padding:12px;max-height:88dvh}
+ .dialog[data-screen=home]>section:before{margin:-12px -12px 8px;height:88px}
+ .dialog[data-screen=yard] .fleet-layout{grid-template-columns:1fr;gap:8px}
+ .dialog[data-screen=yard] .fleet-list{grid-column:1;grid-row:2;grid-template-columns:repeat(4,minmax(0,1fr))}
+ .dialog[data-screen=yard] .fleet-list button{justify-items:center;justify-content:center;text-align:center;padding:4px 2px;border-inline-color:#677982}
+ .dialog[data-screen=yard] .fleet-list button span{display:grid;gap:0}
+ .dialog[data-screen=yard] .fleet-list button canvas{width:44px}
+ .dialog[data-screen=yard] .fleet-list button small{font-size:11px}
+ .dialog[data-screen=yard] .fleet-detail h3{margin-top:8px}
+ .ship-display{aspect-ratio:3.2}
+ .dialog[data-screen=yard] .ship-display canvas{width:43%}
+}
+.dialog{position:fixed;z-index:20;inset:0}.dialog>section{max-height:min(88vh,760px);max-height:min(88dvh,760px)}.graphics-unavailable{padding:16px}
+
